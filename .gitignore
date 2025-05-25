@@ -4,6 +4,7 @@
 /backend/debug.log
 .rust-analyzer/
 coverage/
+node_module/
 
 # === Node.js frontend ===
 /p2p-frontend-setup/node_modules/
@@ -59,6 +60,9 @@ pnpm-debug.log*
 
 # === Testing ===
 /coverage/
+**/template/**/debug/**
+**/template/**/target/**
+**/target/debug/**
 
 # === Production output ===
 **/build/
