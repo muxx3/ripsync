@@ -1,0 +1,20 @@
+{
+    "name": "ripsync",
+    "version": "1.1.1",
+    "description": "P2P File Share CLI",
+    "bin": {
+        "ripsync": "./cli.js",
+        "rs": "./cli.js"
+    },
+    "scripts": {
+        "start": "node ./bin/cli.js"
+    },
+    "author": "muxxe_",
+    "license": "MIT",
+    "dependencies": {
+        "commander": "^14.0.0",
+        "fs-extra": "^11.3.0",
+        "inquirer": "^8.2.6"
+    },
+    "type": "commonjs"
+}
