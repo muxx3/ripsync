@@ -1,0 +1,41 @@
+# ---------------------
+# Unnecessary system & dev files
+# ---------------------
+.DS_Store
+*.log
+*.tgz
+.vscode/
+coverage/
+test/
+*.test.js
+npm-debug.log
+node_modules/
+
+# ---------------------
+# Environment/config files (don't leak secrets)
+# ---------------------
+.env
+.env.local
+ssl/**
+
+# ---------------------
+# Template runtime/irrelevant output
+# ---------------------
+template/**/node_modules/
+template/**/.next/
+template/**/ssl/
+template/**/dist/
+template/**/build/
+template/**/target/
+template/**/.env*
+template/**/.DS_Store
+
+# ---------------------
+# Git artifacts in templates
+# ---------------------
+template/.git
+
+# ---------------------
+# Files only used during development, not needed in published package
+# ---------------------
+

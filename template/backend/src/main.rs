@@ -1,39 +1,60 @@
-use std::{ collections::HashMap, sync::Arc, time::Duration };
+use std::{collections::HashMap, sync::Arc, time::Duration, net::SocketAddr, env};
 
-use axum::{extract::{ws::{Message, WebSocket}, State, WebSocketUpgrade}, response::IntoResponse, routing::get, routing::Router};
+use axum::{
+    extract::{
+        ws::{Message, WebSocket, WebSocketUpgrade},
+        State,
+    },
+    response::IntoResponse,
+    routing::get,
+    Router,
+};
 use futures::{SinkExt, StreamExt};
 use serde_json::Value;
-use tokio::{sync::{ broadcast, mpsc, Mutex }, time::interval};
+use tokio::{
+    sync::{broadcast, mpsc, Mutex},
+    time::interval,
+};
 use uuid::Uuid;
-
+use axum_server::tls_rustls::RustlsConfig;
+use dotenv::dotenv;
 
 #[derive(Clone)]
 struct AppState {
     connections: Arc<Mutex<HashMap<String, broadcast::Sender<Message>>>>,
 }
 
+// keep all your other functions like websocket_handler and handle_socket as is
 
 #[tokio::main]
 async fn main() {
+
+    dotenv().ok(); // loads .env file if exists
+
+    let ip = env::var("SERVER_IP").unwrap_or_else(|_| "127.0.0.1".to_string());
+    let port = env::var("SERVER_PORT").unwrap_or_else(|_| "8000".to_string());
+    let addr: SocketAddr = format!("{}:{}", ip, port).parse().expect("Invalid address");
+
+    println!("WebSocket HTTPS server running at https://{}:{}", ip, port);
+
     let state = AppState {
-        connections: Arc::new(Mutex::new(HashMap::new()))
+        connections: Arc::new(Mutex::new(HashMap::new())),
     };
 
     let app = Router::new()
         .route("/ws", get(websocket_handler))
-        .with_state(state);
+        .with_state(state.clone());
 
+    let tls_config = RustlsConfig::from_pem_file("ssl/cert.pem", "ssl/key.pem")
+        .await
+        .expect("failed to load TLS certs");
 
+    //let addr: SocketAddr = "192.168.1.167:8000".parse().expect("Invalid address");
 
-    // For testing on local host
-    //let listener = tokio::net::TcpListener::bind("127.0.0.1:56789").await.unwrap();
-    //println!("Server running on http://localhost:56789");
-
-
-
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:8000").await.unwrap();
-    println!("Server running on http://localhost:8000");
-    axum::serve(listener, app).await.unwrap();
+    axum_server::bind_rustls(addr, tls_config)
+        .serve(app.into_make_service())
+        .await
+        .unwrap();
 }
 
 async fn websocket_handler(
@@ -67,7 +88,7 @@ async fn handle_socket(socket: WebSocket, state: AppState) {
 
     let ping_tx = message_tx.clone();
     let ping_task = tokio::spawn(async move {
-        let mut interval = interval(Duration::from_secs(30)); 
+        let mut interval = interval(Duration::from_secs(30));
         loop {
             interval.tick().await;
             if ping_tx.send(Message::Ping(vec![])).await.is_err() {
@@ -127,7 +148,6 @@ async fn handle_socket(socket: WebSocket, state: AppState) {
         }
     });
 
-
     tokio::select! {
         _ = sender_task => {},
         _ = ping_task => {},
@@ -138,3 +158,6 @@ async fn handle_socket(socket: WebSocket, state: AppState) {
     state.connections.lock().await.remove(&conn_id_clone);
     println!("Connection closed: {}", conn_id_clone);
 }
+
+
+

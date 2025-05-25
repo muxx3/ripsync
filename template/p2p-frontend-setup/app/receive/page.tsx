@@ -83,7 +83,7 @@ export default function ReceivePage() {
     receivedBytes.current = 0;
     setTransferProgress(0);
 
-    const ws = new WebSocket(`ws://${window.location.hostname}:8000/ws`);
+    const ws = new WebSocket(`wss://${window.location.hostname}:${process.env.NEXT_PUBLIC_WS_SERVER_PORT}/ws`);
     wsRef.current = ws;
 
     ws.onopen = () => {
@@ -182,15 +182,27 @@ export default function ReceivePage() {
   };
 
   const downloadFile = () => {
-    if (!fileUrl || !fileMetadata) return;
+      if (!fileUrl || !fileMetadata) return;
 
-    const a = document.createElement("a");
-    a.href = fileUrl;
-    a.download = fileMetadata.name;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    // Consider revoking the object URL after download
+      const a = document.createElement("a");
+      a.href = fileUrl;
+
+      // For desktop and supported browsers, suggest filename:
+      a.download = fileMetadata.name;
+
+      // For mobile Safari and some browsers, open in new tab
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Revoke the object URL after a short delay
+      setTimeout(() => {
+          URL.revokeObjectURL(fileUrl);
+          setFileUrl(null); // optional, clear the URL state
+      }, 1000);
   };
 
   // Clean up WebSocket connection on unmount
@@ -315,7 +327,6 @@ export default function ReceivePage() {
               <div className="flex flex-col items-center my-6">
                 <WifiAnimation active={true} />
               </div>
-
               <div className="w-full space-y-4">
                 <div className="flex justify-between text-sm">
                   <span>Transferring...</span>
