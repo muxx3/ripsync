@@ -1,4 +1,4 @@
-use std::{collections::HashMap, sync::Arc, time::Duration, net::SocketAddr, env};
+use std::{collections::HashMap, env, net::SocketAddr, sync::Arc, time::Duration};
 
 use axum::{
     extract::{
@@ -9,6 +9,8 @@ use axum::{
     routing::get,
     Router,
 };
+use axum_server::tls_rustls::RustlsConfig;
+use dotenv::dotenv;
 use futures::{SinkExt, StreamExt};
 use serde_json::Value;
 use tokio::{
@@ -16,8 +18,6 @@ use tokio::{
     time::interval,
 };
 use uuid::Uuid;
-use axum_server::tls_rustls::RustlsConfig;
-use dotenv::dotenv;
 
 #[derive(Clone)]
 struct AppState {
@@ -28,7 +28,6 @@ struct AppState {
 
 #[tokio::main]
 async fn main() {
-
     dotenv().ok(); // loads .env file if exists
 
     let ip = env::var("SERVER_IP").unwrap_or_else(|_| "127.0.0.1".to_string());
@@ -119,14 +118,20 @@ async fn handle_socket(socket: WebSocket, state: AppState) {
                             if data["type"] == "register" {
                                 if let Some(id) = data["connectionId"].as_str() {
                                     conn_id = id.to_string();
-                                    state.connections.lock().await.insert(id.to_string(), tx.clone());
+                                    state
+                                        .connections
+                                        .lock()
+                                        .await
+                                        .insert(id.to_string(), tx.clone());
                                 }
                                 continue;
                             }
 
                             if let Some(target_id) = data["target_id"].as_str() {
                                 target_map.insert(conn_id.clone(), target_id.to_string());
-                                if let Some(target_tx) = state.connections.lock().await.get(target_id) {
+                                if let Some(target_tx) =
+                                    state.connections.lock().await.get(target_id)
+                                {
                                     let _ = target_tx.send(Message::Text(text));
                                 }
                             }
@@ -158,6 +163,3 @@ async fn handle_socket(socket: WebSocket, state: AppState) {
     state.connections.lock().await.remove(&conn_id_clone);
     println!("Connection closed: {}", conn_id_clone);
 }
-
-
-

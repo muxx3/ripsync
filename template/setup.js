@@ -61,9 +61,9 @@ function installMkcert(pkgMgr) {
 
 // === Main Logic ===
 async function main() {
-  console.log("🔧 Setting up FileShare project...");
+  console.log("🔧 Setting up RipSync...");
 
-  const { ip, port } = await inquirer.prompt([
+  const { ip, port, backendPort, frontendPort } = await inquirer.prompt([
     {
       type: "input",
       name: "ip",
@@ -72,8 +72,14 @@ async function main() {
     },
     {
       type: "input",
-      name: "port",
-      message: "Enter port (e.g. 8000):",
+      name: "frontendPort",
+      message: "Enter frontend port (e.g. 3000):",
+      validate: isValidPort,
+    },
+    {
+      type: "input",
+      name: "backendPort",
+      message: "Enter backend port (e.g. 8000):",
       validate: isValidPort,
     },
   ]);
@@ -117,12 +123,12 @@ async function main() {
   // === Create .env files ===
   fs.writeFileSync(
     "backend/.env",
-    `SERVER_IP=${ip}\nSERVER_PORT=${port}\n`
+    `SERVER_IP=${ip}\nSERVER_PORT=${backendPort}\n`
   );
 
   fs.writeFileSync(
     "p2p-frontend-setup/.env.local",
-    `NEXT_PUBLIC_WS_SERVER_IP=${ip}\nNEXT_PUBLIC_WS_SERVER_PORT=${port}\n`
+    `NEXT_PUBLIC_WS_SERVER_IP=${ip}\nNEXT_PUBLIC_WS_SERVER_PORT=${backendPort}\nFRONTEND_PORT=${frontendPort}\n`
   );
 
   console.log("✅ Environment setup complete!");
