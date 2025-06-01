@@ -9,26 +9,35 @@ coverage/
 test/
 *.test.js
 npm-debug.log
+
+# Don't include local dependencies
 node_modules/
+**/node_modules/
+**/package-lock.json
+**/Cargo.lock
 
 # ---------------------
-# Environment/config files (don't leak secrets)
+# Environment/config files (prevent leaking secrets)
 # ---------------------
-.env
-.env.local
-ssl/**
+**/.env
+**/.env.*
+ssl/
+**/ssl/
+template/**/.env*
+template/**/ssl/
 
 # ---------------------
 # Template runtime/irrelevant output
 # ---------------------
-template/**/node_modules/
 template/**/.next/
-template/**/ssl/
 template/**/dist/
 template/**/build/
 template/**/target/
-template/**/.env*
 template/**/.DS_Store
+
+# Rust debug output
+**/debug/
+**/target/
 
 # ---------------------
 # Git artifacts in templates
@@ -36,6 +45,11 @@ template/**/.DS_Store
 template/.git
 
 # ---------------------
-# Files only used during development, not needed in published package
+# Files only used during development
 # ---------------------
+CHANGELOG.md
+cli-dev/
+scripts/
+notes/
+docs/
 

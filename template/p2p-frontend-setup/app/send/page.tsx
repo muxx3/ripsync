@@ -341,6 +341,19 @@ export default function SendPage() {
             <WifiAnimation active={isConnected} />
             </div>
 
+            {/* QR Code here */}
+            <div className="flex justify-center mt-6 mb-6">
+            <div className="p-4 rounded-xl shadow-lg w-max mx-auto">
+            <QRCodeCanvas
+            value={`${window.location.origin}/receive?id=${transferId}`}
+            size={170}
+            bgColor="transparent"
+            fgColor="#222222"
+            level="H"
+            />
+            </div>
+            </div>
+
             <div className="flex w-full mb-6">
             <div className="relative flex-1">
             <div className="flex">
@@ -365,19 +378,6 @@ export default function SendPage() {
             </div>
             </div>
 
-
-            {/* QR Code here */}
-<div className="flex justify-center mt-6 mb-6">
-  <div className="p-4 rounded-xl shadow-lg w-max mx-auto">
-    <QRCodeCanvas
-      value={`${window.location.origin}/receive?id=${transferId}`}
-      size={170}
-      bgColor="transparent"
-      fgColor="#ff0000"
-      level="H"
-    />
-  </div>
-</div>
 
 
             <FileCard file={file} className="mb-6" />

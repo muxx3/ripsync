@@ -26,8 +26,8 @@ Cargo.lock
 *.key
 
 # dotenv files (only if they shouldn't be tracked)
-.env
-.env.*
+**/.env
+**/.env.*
 
 # OS / IDE junk
 .DS_Store

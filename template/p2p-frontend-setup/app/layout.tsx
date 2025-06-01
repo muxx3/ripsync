@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "P2P File Transfer",
+  title: "RipSync",
   description: "Transfer files directly between browsers",
 }
 
