@@ -1,13 +1,13 @@
 {
-    "name": "ripsync-beta",
-    "version": "1.1.3",
+    "name": "ripsync",
+    "version": "2.0.0",
     "description": "P2P File Share CLI",
     "bin": {
         "ripsync": "./cli.js",
         "rs": "./cli.js"
     },
     "scripts": {
-        "start": "node ./bin/cli.js"
+        "start": "node ./cli.js"
     },
     "author": "muxxe_",
     "license": "Vantum",

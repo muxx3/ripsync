@@ -15,7 +15,7 @@ out/
 build/
 
 # Rust (backend)
-target/
+**/target/
 **/target/debug/
 **/*.rs.bk
 Cargo.lock

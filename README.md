@@ -5,7 +5,6 @@
   <img src="https://img.shields.io/badge/CLI-Node.js-green" />
   <img src="https://img.shields.io/badge/Backend-Rust-orange" />
   <img src="https://img.shields.io/badge/Built%20With-RipSync-blueviolet" />
-  <img src="https://img.shields.io/badge/License-VANTUM-lightgrey" />
 </p>
 
 ---
@@ -21,7 +20,6 @@
 - [⚙️ Configuration](#️-configuration)
 - [🗂 Template & Project Structure](#-template--project-structure)
 - [✅ Required Dependencies](#Required-Dependencies)
-- [🧾 License](#-license)
 
 ---
 

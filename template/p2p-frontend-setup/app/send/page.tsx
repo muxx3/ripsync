@@ -347,8 +347,8 @@ export default function SendPage() {
             <QRCodeCanvas
             value={`${window.location.origin}/receive?id=${transferId}`}
             size={170}
-            bgColor="transparent"
-            fgColor="#222222"
+            bgColor="#FFFFFF"
+            fgColor="#000000"
             level="H"
             />
             </div>
