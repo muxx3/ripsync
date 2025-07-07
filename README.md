@@ -131,10 +131,7 @@ You can modify the contents of template/ to change future server scaffolding beh
 - **Rust** (via cargo)	Compiles and runs the backend server	https://rustup.rs
 - **mkcert**	Creates local HTTPS certificates (automatically installed by CLI if missing)	https://github.com/FiloSottile/mkcert
 ---
-🧾 License
-```
-VANTUM License – See LICENSE file for full terms.
-```
+
 ```
 Feel free to fork, customize, or contribute!
 Questions?
