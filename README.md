@@ -136,4 +136,8 @@ Questions?
 Open an issue or start a discussion.
 ```
 
+----------
 
+## Credits
+
+Made with 🦀 (Rust) by [muxx3](https://github.com/muxx3).
