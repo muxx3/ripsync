@@ -24,8 +24,6 @@ struct AppState {
     connections: Arc<Mutex<HashMap<String, broadcast::Sender<Message>>>>,
 }
 
-// keep all your other functions like websocket_handler and handle_socket as is
-
 #[tokio::main]
 async fn main() {
     dotenv().ok(); // loads .env file if exists
@@ -47,8 +45,6 @@ async fn main() {
     let tls_config = RustlsConfig::from_pem_file("ssl/cert.pem", "ssl/key.pem")
         .await
         .expect("failed to load TLS certs");
-
-    //let addr: SocketAddr = "192.168.1.167:8000".parse().expect("Invalid address");
 
     axum_server::bind_rustls(addr, tls_config)
         .serve(app.into_make_service())
