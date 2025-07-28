@@ -196,7 +196,7 @@ export default function SendPage() {
             // Send metadata as JSON string
             wsRef.current?.send(JSON.stringify(messageMeta));
 
-            // Slight delay to prevent message boundary issues (optional but recommended)
+            // Slight delay to prevent message boundary issues
             setTimeout(() => {
                 // Then send raw binary chunk
                 wsRef.current?.send(chunkData);
@@ -341,7 +341,7 @@ export default function SendPage() {
             <WifiAnimation active={isConnected} />
             </div>
 
-            {/* QR Code here */}
+            {/* QR Code */}
             <div className="flex justify-center mt-6 mb-6">
             <div className="p-4 rounded-xl shadow-lg w-max mx-auto">
             <QRCodeCanvas
