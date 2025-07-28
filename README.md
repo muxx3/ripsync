@@ -1,5 +1,5 @@
-<h1 align="center">🚀 RipSync</h1>
-<p align="center"><b>Instantly create and run P2P file-sharing servers with local HTTPS support 🔐</b></p>
+<h1 align="center">RipSync</h1>
+<p align="center"><b>Instantly create and run P2P file-sharing servers with local HTTPS support </b></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/CLI-Node.js-green" />
@@ -11,44 +11,44 @@
 
 ## 📚 Table of Contents
 
-- [✨ Features](#-features)
-- [📦 Installation](#-installation)
+- [ Features](#-features)
+- [ Installation](#-installation)
   - [🔹 Install via NPM](#-install-via-npm-recommended)
   - [🔹 Clone via GitHub (HTTPS or SSH)](#-clone-via-github-https-or-ssh)
-- [🧪 Example Workflow](#-example-workflow)
-- [📘 CLI Command Reference](#-cli-command-reference)
-- [⚙️ Configuration](#️-configuration)
-- [🗂 Template & Project Structure](#-template--project-structure)
-- [✅ Required Dependencies](#Required-Dependencies)
+- [ Example Workflow](#-example-workflow)
+- [ CLI Command Reference](#-cli-command-reference)
+- [ Configuration](#️-configuration)
+- [ Template & Project Structure](#-template--project-structure)
+- [ Required Dependencies](#Required-Dependencies)
 
 ---
 
-## ✨ Features
+##  Features
 
-- 🧠 **Smart Interactive CLI** – Launch an intuitive menu with no arguments
-- ⚙️ **One-Command Setup** – Spin up full frontend/backend servers with HTTPS
-- 🔐 **Local SSL with `mkcert`** – Automatically installs and configures certs
-- 🌍 **Global Run Support** – Run named servers from anywhere via `~/ripsync-servers`
-- 📁 **Pre-Configured Templates** – Modify backend (Rust) and frontend (Next.js) defaults
-- 💬 **Multiple Access Methods** – Install via NPM or clone directly via GitHub
+-  **Smart Interactive CLI** – Launch an intuitive menu with no arguments
+-  **One-Command Setup** – Spin up full frontend/backend servers with HTTPS
+-  **Local SSL with `mkcert`** – Automatically installs and configures certs
+-  **Global Run Support** – Run named servers from anywhere via `~/ripsync-servers`
+-  **Pre-Configured Templates** – Modify backend (Rust) and frontend (Next.js) defaults
+-  **Multiple Access Methods** – Install via NPM or clone directly via GitHub
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### 🔹 Install via NPM (recommended)
 
 ```bash
 npm install -g ripsync
 
-⚠️ You may need to use sudo depending on your system's configuration:
+ You may need to use sudo depending on your system's configuration:
 sudo npm install -g ripsync
 
 Once installed, use globally:
 ripsync <command>
 ```
 ### 🔹 Clone via GitHub (HTTPS or SSH)
-📎 Clone via HTTPS
+ Clone via HTTPS
 ```bash
 
 git clone https://github.com/muxx3/ripsync.git
@@ -56,7 +56,7 @@ cd ripsync
 npm install
 npm link  # Optional: Enables global access via `ripsync`
 ```
-🔒 Clone via SSH
+ Clone via SSH
 ```
 git clone git@github.com:muxx3/ripsync.git
 cd ripsync
@@ -78,7 +78,7 @@ ripsync init
 # 4. Run the server from anywhere
 ripsync run <my-server>
 ```
-### 📘 CLI Command Reference
+###  CLI Command Reference
 ```
 Command	Description
 ripsync	                        Launches the interactive CLI menu
@@ -92,7 +92,7 @@ ripsync ascii                   Prints the RipSync ASCII banner art
 ripsync --help	                Show help and all CLI options
 ```
 ---
-### ⚙️ Configuration
+###  Configuration
 ```
 After running ripsync build, you can tweak the generated project:
 Backend (backend/.env)
@@ -122,7 +122,7 @@ ripsync/
 You can modify the contents of template/ to change future server scaffolding behavior.
 ```
 ---
-### ✅ Required Dependencies
+### Required Dependencies
 
 - **Node.js (≥ v16)** | Runs the CLI (cli.js) manages templates and script logic	https://nodejs.org
 - **npm** (comes with Node.js)	Used for installing the CLI (npm install -g ripsync)	Bundled with Node
