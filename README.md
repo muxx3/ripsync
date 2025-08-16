@@ -64,7 +64,7 @@ npm install
 npm link # Optional: Enables global access via `ripsync`
 ```
 ---
-### 🧪 Example Workflow
+### Example Workflow
 ```
 # 1. Create a new P2P server project
 ripsync build <my-server>
