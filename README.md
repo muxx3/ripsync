@@ -84,7 +84,7 @@ Command	Description
 ripsync	                        Launches the interactive CLI menu
 ripsync build <project-name>	Scaffold a new file-sharing server project
 ripsync start	                Starts the frontend and backend in the current directory
-ripsync run <project-name>	Launch a known project from anywhere via ~/ripsync-servers
+ripsync run <project-name>	    Launch a known project from anywhere via ~/ripsync-servers
 ripsync init                    Move a project to global folder so it can be run globally
 ripsync list                    List all known servers
 ripsync clean                   Remove all known servers
