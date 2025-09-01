@@ -80,7 +80,7 @@ function buildBackend(backendPath) {
 
 // Step 4: Launch both backend and frontend using 'concurrently'
 function startServers(frontendPath, backendPath) {
-  console.log("🚀 Starting backend and frontend...");
+  console.log(" Starting backend and frontend...");
 
   const run = spawnSync(
     `npx concurrently "cd '${backendPath}' && cargo run" "cd '${frontendPath}' && npm run network"`,

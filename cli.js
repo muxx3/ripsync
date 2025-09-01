@@ -45,9 +45,9 @@ d88'     d88'   888888P' ?888P'  ?88P'?8b d88'   88b ?888P'
 
   `;
   console.log(banner);
-  console.log(`💾  HI! Welcome to \x1b[34mRipSync\x1b[0m – P2P file sharing, simplified.\n`);
-  console.log(`👉  Build a Rip server!`);
-  console.log(`👉  Or Exit and type \x1b[4mripsync --help\x1b[0m for all commands\n`);
+  console.log(`  HI! Welcome to \x1b[34mRipSync\x1b[0m – P2P file sharing, simplified.\n`);
+  console.log(`  Build a Rip server!`);
+  console.log(`  Or Exit and type \x1b[4mripsync --help\x1b[0m for all commands\n`);
 }
 
 function runNodeScript(scriptName, cwd) {
@@ -95,7 +95,7 @@ async function buildProject(name) {
 
   runNodeScript("setup.js", destPath);
   console.log(`\n✅ Server created at ./${name}`);
-  console.log(`👉 cd ${name} && ripsync init`);
+  console.log(` cd ${name} && ripsync init`);
 }
 
 function startCurrentProject() {
@@ -168,7 +168,7 @@ async function initProject() {
   });
 
   console.log(`✅ Registered "${projectName}" at: ${targetDir}`);
-  console.log(`👉 You can now run it from anywhere with: ripsync run ${projectName}`);
+  console.log(` You can now run it from anywhere with: ripsync run ${projectName}`);
 }
 
 
@@ -178,13 +178,13 @@ async function interactivePrompt() {
     name: "action",
     message: "Choose an action:",
     choices: [
-      { name: "🛠   Create new server", value: "build" },
-      { name: "▶️  Start server in current directory", value: "start" },
-      { name: "🚀  Run server by name", value: "run" },
-      { name: "📦  Initialize server", value: "init" },
-      { name: "📄  List known servers", value: "list" },
-      { name: "🧹  Delete known servers", value: "clean" },
-      { name: "❌  Exit", value: "exit" },
+      { name: "  Create new server", value: "build" },
+      { name: "  Start server in current directory", value: "start" },
+      { name: "  Run server by name", value: "run" },
+      { name: "  Initialize server", value: "init" },
+      { name: "  List known servers", value: "list" },
+      { name: "  Delete known servers", value: "clean" },
+      { name: "  Exit", value: "exit" },
     ],
   });
 

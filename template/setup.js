@@ -61,7 +61,7 @@ function installMkcert(pkgMgr) {
 
 // === Main Logic ===
 async function main() {
-  console.log("🔧 Setting up RipSync...");
+  console.log(" Setting up RipSync...");
 
   const { ip, port, backendPort, frontendPort } = await inquirer.prompt([
     {
